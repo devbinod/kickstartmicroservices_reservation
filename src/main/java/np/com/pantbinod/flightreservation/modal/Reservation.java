@@ -4,23 +4,15 @@ import javax.persistence.*;
 
 @Table(name = "reservation")
 @Entity
-public class Reservation {
+public class Reservation extends AbastractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private Boolean checkedIn;
     private int numberOfBag;
+    @OneToOne
     private Passenger passenger;
+    @OneToOne
     private Flight flight;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Boolean getCheckedIn() {
         return checkedIn;
