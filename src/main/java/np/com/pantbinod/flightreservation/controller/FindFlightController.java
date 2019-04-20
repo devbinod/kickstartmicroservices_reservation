@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class FindFlightController {
+public class  FindFlightController {
 
     @Autowired
     private FlightRepository flightRepository;
@@ -22,10 +22,13 @@ public class FindFlightController {
 
     )
     public String findFlights(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("departureDate")
-    @DateTimeFormat(pattern = "MM-dd-yyyy") Date departureDate, ModelMap modelMap){
+    @DateTimeFormat(pattern = "mm-dd-yyyy") Date departureDate, ModelMap modelMap){
+        System.out.println(from + to+ departureDate);
+       List<Flight> flights= flightRepository.findFlights(from,to);
 
-       List<Flight> flights= flightRepository.findFlights(from,to,departureDate);
+
        modelMap.addAttribute("flights",flights);
+        System.out.println("flights" +flights);
         return "displayFlight";
     }
 
